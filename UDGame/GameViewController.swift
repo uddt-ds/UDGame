@@ -56,10 +56,10 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GameCollectionViewCell.self), for: indexPath) as? GameCollectionViewCell else { return .init() }
-        cell.setupButtonTitle(index: indexPath.row)
+        cell.setupLabelTitle(index: indexPath.row)
         DispatchQueue.main.async {
-            cell.numberButton.layer.cornerRadius =
-            cell.numberButton.frame.width / 2
+            cell.numberBgView.layer.cornerRadius =
+            cell.numberBgView.frame.width / 2
         }
         return cell
     }

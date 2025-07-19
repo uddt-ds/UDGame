@@ -9,29 +9,21 @@ import UIKit
 
 class GameCollectionViewCell: UICollectionViewCell {
 
-    @IBOutlet var numberButton: UIButton!
-
+    @IBOutlet var numberBgView: UIView!
+    @IBOutlet var numberLabel: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
 
-        setupButton()
         backgroundColor = .clear
     }
 
-    private func setupButton() {
-        numberButton.setTitle("1", for: .normal)
-        numberButton.setTitle("1", for: .selected)
-
-        numberButton.setTitleColor(.black, for: .normal)
-        numberButton.setTitleColor(.white, for: .selected)
-
-        numberButton.backgroundColor = .white
-
+    func setupBgView() {
+        backgroundColor = .white
     }
 
-    func setupButtonTitle(index: Int) {
+    func setupLabelTitle(index: Int) {
         let title = String(index + 1)
-        numberButton.setTitle(title, for: .normal)
-        numberButton.setTitle(title, for: .selected)
+        numberLabel.text = title
     }
 }

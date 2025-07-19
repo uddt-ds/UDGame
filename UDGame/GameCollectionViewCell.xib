@@ -4,6 +4,7 @@
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="23721"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -16,28 +17,43 @@
                 <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
                 <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                 <subviews>
-                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="weg-C5-sTE">
+                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n15-dt-z67">
                         <rect key="frame" x="0.0" y="0.0" width="110" height="110"/>
+                        <subviews>
+                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="l8t-kz-jgb">
+                                <rect key="frame" x="34" y="44.666666666666664" width="42" height="20.999999999999993"/>
+                                <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                <nil key="textColor"/>
+                                <nil key="highlightedColor"/>
+                            </label>
+                        </subviews>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                         <constraints>
-                            <constraint firstAttribute="width" secondItem="weg-C5-sTE" secondAttribute="height" multiplier="1:1" id="CA6-II-2fe"/>
+                            <constraint firstAttribute="width" secondItem="n15-dt-z67" secondAttribute="height" multiplier="1:1" id="FV7-hh-GJY"/>
+                            <constraint firstItem="l8t-kz-jgb" firstAttribute="centerX" secondItem="n15-dt-z67" secondAttribute="centerX" id="Psj-UU-hs7"/>
+                            <constraint firstItem="l8t-kz-jgb" firstAttribute="centerY" secondItem="n15-dt-z67" secondAttribute="centerY" id="dPr-eZ-P0D"/>
                         </constraints>
-                        <state key="normal" title="Button"/>
-                        <buttonConfiguration key="configuration" style="plain" title="Button"/>
-                    </button>
+                    </view>
                 </subviews>
             </view>
             <viewLayoutGuide key="safeArea" id="ZTg-uK-7eu"/>
             <constraints>
-                <constraint firstItem="weg-C5-sTE" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="8J7-zB-1IN"/>
-                <constraint firstItem="weg-C5-sTE" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="P7g-2m-Dhi"/>
-                <constraint firstAttribute="trailing" secondItem="weg-C5-sTE" secondAttribute="trailing" id="c2g-HX-Ucw"/>
-                <constraint firstAttribute="bottom" secondItem="weg-C5-sTE" secondAttribute="bottom" id="pzY-ig-Gcg"/>
+                <constraint firstAttribute="bottom" secondItem="n15-dt-z67" secondAttribute="bottom" id="QcE-qE-Ib6"/>
+                <constraint firstItem="n15-dt-z67" firstAttribute="leading" secondItem="gTV-IL-0wX" secondAttribute="leading" id="mwN-bP-wyt"/>
+                <constraint firstAttribute="trailing" secondItem="n15-dt-z67" secondAttribute="trailing" id="nkW-6Q-ULN"/>
+                <constraint firstItem="n15-dt-z67" firstAttribute="top" secondItem="gTV-IL-0wX" secondAttribute="top" id="u9l-tC-zBC"/>
             </constraints>
             <size key="customSize" width="123" height="121"/>
             <connections>
-                <outlet property="numberButton" destination="weg-C5-sTE" id="0jp-kO-QXM"/>
+                <outlet property="numberBgView" destination="n15-dt-z67" id="hUV-5U-0CY"/>
+                <outlet property="numberLabel" destination="l8t-kz-jgb" id="qp4-5t-75Q"/>
             </connections>
             <point key="canvasLocation" x="82.44274809160305" y="66.197183098591552"/>
         </collectionViewCell>
     </objects>
+    <resources>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
+    </resources>
 </document>
