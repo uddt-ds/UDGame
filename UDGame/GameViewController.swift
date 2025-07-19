@@ -10,13 +10,22 @@ import UIKit
 class GameViewController: UIViewController {
 
     @IBOutlet var checkCollectionView: UICollectionView!
+    @IBOutlet var tryCountLabel: SubLabel!
 
     var userNum: Int = 0
+    var tryCount: Int = 0
+    private var answerNumber: Int = 0
+    private var totalNumArr: [Int] = []
+    private var isCorrect: Bool = false
+
+    @IBOutlet var checkButton: CustomButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupBackground()
+        setupCheckButton()
+
         checkCollectionView.backgroundColor = .clear
 
         let xib = UINib(nibName: String(describing: GameCollectionViewCell.self), bundle: nil)
@@ -25,10 +34,38 @@ class GameViewController: UIViewController {
         checkCollectionView.delegate = self
         checkCollectionView.dataSource = self
         checkCollectionView.collectionViewLayout = makeFlowLayout()
-        print(userNum)
+
+        answerNumber = Int.random(in: 1...userNum)
+        for num in 1...userNum {
+            totalNumArr.append(num)
+        }
+        print(totalNumArr)
     }
 
 
+    private func checkAnswer(_ selectedNum: Int) -> Bool {
+        if answerNumber == selectedNum {
+            return true
+        } else {
+            return false
+        }
+    }
+
+    private func setupCheckButton() {
+        checkButton.isEnabled = false
+    }
+
+    @IBAction func checkButtonTapped(_ sender: UIButton) {
+        tryCount += 1
+        tryCountLabel.text = "시도 횟수: \(tryCount)"
+
+        if !isCorrect {
+            checkCollectionView.reloadData()
+            checkButton.isEnabled = false
+        } else {
+            navigationController?.popViewController(animated: true)
+        }
+    }
 }
 
 extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSource {
@@ -51,12 +88,12 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return userNum
+        return totalNumArr.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GameCollectionViewCell.self), for: indexPath) as? GameCollectionViewCell else { return .init() }
-        cell.setupLabelTitle(index: indexPath.row)
+        cell.setupLabelTitle(index: totalNumArr[indexPath.row])
         DispatchQueue.main.async {
             cell.numberBgView.layer.cornerRadius =
             cell.numberBgView.frame.width / 2
@@ -65,7 +102,13 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        print(#function)
+        checkButton.isEnabled = true
+
+        if checkAnswer(totalNumArr[indexPath.row]) {
+            isCorrect = true
+        } else {
+            totalNumArr.remove(at: indexPath.row)
+        }
     }
 
 

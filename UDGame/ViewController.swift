@@ -25,6 +25,7 @@ class ViewController: UIViewController {
         setupImageView()
         setupTextField()
         setupBackground()
+        setupStartButton()
     }
 
     private func setupNavigation() {
@@ -58,6 +59,10 @@ class ViewController: UIViewController {
         numberTextField.font = .boldSystemFont(ofSize: 16)
         numberTextField.textAlignment = .center
         numberTextField.placeholder = holder
+    }
+
+    private func setupStartButton() {
+        startButton.setTitle("시작하기", for: .normal)
     }
 
     @IBAction func startButtonTapped(_ sender: CustomButton) {

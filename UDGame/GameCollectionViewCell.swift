@@ -11,7 +11,19 @@ class GameCollectionViewCell: UICollectionViewCell {
 
     @IBOutlet var numberBgView: UIView!
     @IBOutlet var numberLabel: UILabel!
-    
+
+    override var isSelected: Bool {
+        didSet {
+            if isSelected {
+                numberBgView.backgroundColor = .black
+                numberLabel.textColor = .white
+            } else {
+                numberBgView.backgroundColor = .white
+                numberLabel.textColor = .black
+            }
+        }
+    }
+
     override func awakeFromNib() {
         super.awakeFromNib()
 
@@ -23,7 +35,7 @@ class GameCollectionViewCell: UICollectionViewCell {
     }
 
     func setupLabelTitle(index: Int) {
-        let title = String(index + 1)
+        let title = String(index)
         numberLabel.text = title
     }
 }

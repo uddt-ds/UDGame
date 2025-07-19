@@ -9,6 +9,18 @@ import UIKit
 
 class CustomButton: UIButton {
 
+    override var isEnabled: Bool {
+        didSet {
+            if isEnabled {
+                backgroundColor = .black
+                setTitleColor(.white, for: .normal)
+            } else {
+                backgroundColor = .gray
+                setTitleColor(.white, for: .disabled)
+            }
+        }
+    }
+
     override init(frame: CGRect) {
         super.init(frame: frame)
     }
@@ -16,17 +28,17 @@ class CustomButton: UIButton {
     required init?(coder: NSCoder) {
         super.init(coder: coder)
         setupButton()
-        setupButtonTitle(title: "테스트")
+        setupButtonTitle(title: "결과 확인하기")
     }
 
     private func setupButton() {
         backgroundColor = .black
-        setTitleColor(.white, for: .normal)
-        titleLabel?.font = .boldSystemFont(ofSize: 12)
+        titleLabel?.font = .boldSystemFont(ofSize: 14)
     }
 
     func setupButtonTitle(title: String) {
         setTitle(title, for: .normal)
         setTitleColor(.white, for: .normal)
+        titleLabel?.font = .boldSystemFont(ofSize: 14)
     }
 }
