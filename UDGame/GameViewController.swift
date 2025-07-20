@@ -7,7 +7,7 @@
 
 import UIKit
 
-class GameViewController: UIViewController {
+class GameViewController: UIViewController, CheckSystem {
 
     @IBOutlet var topLabel: TopLabel!
     @IBOutlet var checkCollectionView: UICollectionView!
@@ -41,16 +41,16 @@ class GameViewController: UIViewController {
         for num in 1...userNum {
             totalNumArr.append(num)
         }
+
+        print(answerNumber)
     }
 
-    private func checkAnswer() -> Bool {
+    func checkAnswer() -> Bool {
         if selectedNumber > answerNumber {
             topLabel.text = "Down"
-            checkCollectionView.reloadData()
             return false
         } else if selectedNumber < answerNumber {
             topLabel.text = "Up"
-            checkCollectionView.reloadData()
             return false
         } else {
             return true
@@ -70,7 +70,11 @@ class GameViewController: UIViewController {
         if isCorrect {
             navigationController?.popViewController(animated: true)
         } else {
-            checkCollectionView.reloadData()
+            // 해당하는 값을 찾아서 delete
+            if let index = totalNumArr.firstIndex(of: selectedNumber) {
+                totalNumArr.remove(at: index)
+                checkCollectionView.deleteItems(at: [IndexPath(item: index, section: 0)])
+            }
         }
     }
 }
@@ -101,7 +105,7 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: String(describing: GameCollectionViewCell.self), for: indexPath) as? GameCollectionViewCell else { return .init() }
-        cell.setupLabelTitle(index: totalNumArr[indexPath.row])
+        cell.setupLabelTitle(index: totalNumArr[indexPath.item])
         DispatchQueue.main.async {
             cell.numberBgView.layer.cornerRadius =
             cell.numberBgView.frame.width / 2
@@ -110,12 +114,8 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        selectedNumber = totalNumArr[indexPath.row]
+        selectedNumber = totalNumArr[indexPath.item]
 
         checkButton.isEnabled = true
-
-        if !isCorrect {
-            totalNumArr.remove(at: indexPath.row)
-        }
     }
 }

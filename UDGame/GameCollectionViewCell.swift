@@ -26,7 +26,6 @@ class GameCollectionViewCell: UICollectionViewCell {
 
     override func awakeFromNib() {
         super.awakeFromNib()
-
         backgroundColor = .clear
     }
 
