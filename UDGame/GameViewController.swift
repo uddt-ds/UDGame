@@ -12,6 +12,7 @@ class GameViewController: UIViewController, CheckSystem {
     @IBOutlet var topLabel: TopLabel!
     @IBOutlet var checkCollectionView: UICollectionView!
     @IBOutlet var tryCountLabel: SubLabel!
+    @IBOutlet var checkButton: CustomButton!
 
     var userNum: Int = 0
     var tryCount: Int = 0
@@ -19,8 +20,6 @@ class GameViewController: UIViewController, CheckSystem {
     private var selectedNumber: Int = 0
     private var totalNumArr: [Int] = []
     private var isCorrect: Bool = false
-
-    @IBOutlet var checkButton: CustomButton!
 
     override func viewDidLoad() {
         super.viewDidLoad()
