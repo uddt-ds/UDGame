@@ -15,7 +15,7 @@ class GameViewController: UIViewController, CheckSystem {
     @IBOutlet var checkButton: CustomButton!
 
     var userNum: Int = 0
-    var tryCount: Int = 0
+    private var tryCount: Int = 0
     private var answerNumber: Int = 0
     private var selectedNumber: Int = 0
     private var totalNumArr: [Int] = []

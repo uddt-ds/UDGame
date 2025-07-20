@@ -7,12 +7,6 @@
 
 import Foundation
 
-enum CustomError: Error {
-    case inputError
-
-    var title: String {
-        switch self {
-        case .inputError: return "잘못된 입력입니다"
-        }
-    }
+enum CustomError: String, Error {
+    case inputError = "잘못된 입력입니다"
 }
