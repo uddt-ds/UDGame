@@ -59,6 +59,7 @@ class ViewController: UIViewController {
         numberTextField.font = .boldSystemFont(ofSize: 16)
         numberTextField.textAlignment = .center
         numberTextField.placeholder = holder
+        numberTextField.keyboardType = .numberPad
     }
 
     private func setupStartButton() {
@@ -76,6 +77,11 @@ class ViewController: UIViewController {
             showAlert(message: CustomError.inputError.rawValue)
         }
     }
+
+    @IBAction func viewTapped(_ sender: UITapGestureRecognizer) {
+        view.endEditing(true)
+    }
+    
 }
 
 

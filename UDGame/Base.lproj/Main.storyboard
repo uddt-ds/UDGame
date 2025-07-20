@@ -61,6 +61,7 @@
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <gestureRecognizers/>
                         <constraints>
                             <constraint firstItem="u2U-Ah-eoL" firstAttribute="top" secondItem="4C4-CM-3tw" secondAttribute="bottom" constant="8" id="1YP-mF-qCa"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="Ssp-FE-oKd" secondAttribute="trailing" constant="24" id="2E5-Jy-xhS"/>
@@ -81,6 +82,9 @@
                             <constraint firstItem="udo-Um-lx1" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="24" id="rpL-u0-h4r"/>
                             <constraint firstItem="udo-Um-lx1" firstAttribute="centerX" secondItem="6Tk-OE-BBY" secondAttribute="centerX" id="tgb-FO-02O"/>
                         </constraints>
+                        <connections>
+                            <outletCollection property="gestureRecognizers" destination="0hb-BN-pcf" appends="YES" id="5St-M2-YpS"/>
+                        </connections>
                     </view>
                     <navigationItem key="navigationItem" id="QaR-fT-tNg"/>
                     <connections>
@@ -93,6 +97,11 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="0hb-BN-pcf">
+                    <connections>
+                        <action selector="viewTapped:" destination="BYZ-38-t0r" id="sF4-td-mUk"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1079.2" y="17.733990147783253"/>
         </scene>
