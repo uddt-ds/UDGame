@@ -73,7 +73,7 @@ class ViewController: UIViewController {
             vc.userNum = num
             navigationController?.pushViewController(vc, animated: true)
         } catch {
-            print(CustomError.inputError.title)
+            showAlert(message: CustomError.inputError.title)
         }
     }
 }
