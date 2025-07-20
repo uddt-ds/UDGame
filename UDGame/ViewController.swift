@@ -79,12 +79,3 @@ class ViewController: UIViewController {
 }
 
 
-enum CustomError: Error {
-    case inputError
-
-    var title: String {
-        switch self {
-        case .inputError: return "잘못된 입력입니다"
-        }
-    }
-}

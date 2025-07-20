@@ -9,7 +9,6 @@ import UIKit
 
 class GameViewController: UIViewController {
 
-
     @IBOutlet var topLabel: TopLabel!
     @IBOutlet var checkCollectionView: UICollectionView!
     @IBOutlet var tryCountLabel: SubLabel!
@@ -44,19 +43,6 @@ class GameViewController: UIViewController {
         }
     }
 
-
-//    private func checkAnswer(_ selectedNum: Int) -> Bool {
-//        if answerNumber == selectedNum {
-//            return true
-//        } else if answerNumber > selectedNum {
-//            topLabel.text = "Down"
-//            return false
-//        } else {
-//            topLabel.text = "Up"
-//            return false
-//        }
-//    }
-
     private func checkAnswer() -> Bool {
         if selectedNumber > answerNumber {
             topLabel.text = "Down"
@@ -86,14 +72,6 @@ class GameViewController: UIViewController {
         } else {
             checkCollectionView.reloadData()
         }
-
-//        if !isCorrect {
-//            
-//            checkCollectionView.reloadData()
-//            checkButton.isEnabled = false
-//        } else {
-//            navigationController?.popViewController(animated: true)
-//        }
     }
 }
 
@@ -104,14 +82,15 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
 
         let deviceWidth = UIScreen.main.bounds.width
 
-        // 셀 넓이 디바이스 넓이 - 좌우 인셋 - 아이템 간격
-        let cellWidth = deviceWidth - (8 * 2) - (8 * (6 - 1))
+        // 셀 넓이 = 디바이스 넓이 - 좌우 인셋 - 아이템 간격
+        let cellWidth = deviceWidth - (CollectionConfigure.inset * 2) - (CollectionConfigure.spacing * (CollectionConfigure.itemCount - 1))
 
-        layout.itemSize = .init(width: cellWidth/6, height: cellWidth/6)
+        layout.itemSize = .init(width: cellWidth/CollectionConfigure.itemCount,
+                                height: cellWidth/CollectionConfigure.itemCount)
         layout.scrollDirection = .horizontal
-        layout.sectionInset = .init(top: 0, left: 8, bottom: 0, right: 8)
-        layout.minimumInteritemSpacing = 8
-        layout.minimumLineSpacing = 8
+        layout.sectionInset = .init(top: 0, left: CollectionConfigure.inset, bottom: 0, right: CollectionConfigure.inset)
+        layout.minimumInteritemSpacing = CollectionConfigure.spacing
+        layout.minimumLineSpacing = CollectionConfigure.spacing
 
         return layout
     }
