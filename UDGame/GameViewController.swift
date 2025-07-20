@@ -9,12 +9,15 @@ import UIKit
 
 class GameViewController: UIViewController {
 
+
+    @IBOutlet var topLabel: TopLabel!
     @IBOutlet var checkCollectionView: UICollectionView!
     @IBOutlet var tryCountLabel: SubLabel!
 
     var userNum: Int = 0
     var tryCount: Int = 0
     private var answerNumber: Int = 0
+    private var selectedNumber: Int = 0
     private var totalNumArr: [Int] = []
     private var isCorrect: Bool = false
 
@@ -39,15 +42,32 @@ class GameViewController: UIViewController {
         for num in 1...userNum {
             totalNumArr.append(num)
         }
-        print(totalNumArr)
     }
 
 
-    private func checkAnswer(_ selectedNum: Int) -> Bool {
-        if answerNumber == selectedNum {
-            return true
-        } else {
+//    private func checkAnswer(_ selectedNum: Int) -> Bool {
+//        if answerNumber == selectedNum {
+//            return true
+//        } else if answerNumber > selectedNum {
+//            topLabel.text = "Down"
+//            return false
+//        } else {
+//            topLabel.text = "Up"
+//            return false
+//        }
+//    }
+
+    private func checkAnswer() -> Bool {
+        if selectedNumber > answerNumber {
+            topLabel.text = "Down"
+            checkCollectionView.reloadData()
             return false
+        } else if selectedNumber < answerNumber {
+            topLabel.text = "Up"
+            checkCollectionView.reloadData()
+            return false
+        } else {
+            return true
         }
     }
 
@@ -59,12 +79,21 @@ class GameViewController: UIViewController {
         tryCount += 1
         tryCountLabel.text = "시도 횟수: \(tryCount)"
 
-        if !isCorrect {
-            checkCollectionView.reloadData()
-            checkButton.isEnabled = false
-        } else {
+        isCorrect = checkAnswer()
+
+        if isCorrect {
             navigationController?.popViewController(animated: true)
+        } else {
+            checkCollectionView.reloadData()
         }
+
+//        if !isCorrect {
+//            
+//            checkCollectionView.reloadData()
+//            checkButton.isEnabled = false
+//        } else {
+//            navigationController?.popViewController(animated: true)
+//        }
     }
 }
 
@@ -102,14 +131,12 @@ extension GameViewController: UICollectionViewDelegate, UICollectionViewDataSour
     }
 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        selectedNumber = totalNumArr[indexPath.row]
+
         checkButton.isEnabled = true
 
-        if checkAnswer(totalNumArr[indexPath.row]) {
-            isCorrect = true
-        } else {
+        if !isCorrect {
             totalNumArr.remove(at: indexPath.row)
         }
     }
-
-
 }

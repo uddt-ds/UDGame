@@ -169,6 +169,7 @@
                     <connections>
                         <outlet property="checkButton" destination="TFV-vu-zT9" id="cJH-GF-trx"/>
                         <outlet property="checkCollectionView" destination="PF4-3C-N8X" id="Z8f-Ne-X7f"/>
+                        <outlet property="topLabel" destination="65x-6p-EuX" id="B0y-c3-XaN"/>
                         <outlet property="tryCountLabel" destination="dMi-8u-5Q6" id="MOY-jL-5sO"/>
                     </connections>
                 </viewController>
